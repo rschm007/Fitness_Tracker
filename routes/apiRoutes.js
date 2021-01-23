@@ -18,7 +18,7 @@ router.get("/api/workouts", async (req, res) => {
 // POST a new workout
 router.post("/api/workouts", async ({ body }, res) => {
   try {
-    Workout.create(body).then((dbWorkout) => {
+    Workout.create({}).then((dbWorkout) => {
       res.json(dbWorkout);
     });
   } catch (err) {
@@ -30,15 +30,15 @@ router.post("/api/workouts", async ({ body }, res) => {
 // PUT a new exercise into a workout
 router.put("/api/workouts/:id", async ({ body, params }, res) => {
   try {
-    const workoutId = params.id;
-    let savedExercises = [];
-
-    // GET all currently saved exercises in the user's current workout
-    Workout.find({_id: workoutId})
-      .then(dbWorkout => {
-        console.log(dbWorkout);
-
-      })
+    Workout.findByIdAndUpdate(
+      params.id,
+      { $push: { exercises: body }},
+      // runValidators to ensure new exercises meet schema requirements
+      { new: true, runValidators: true }
+    )
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
   } catch (err) {
     res.status(400).json(err);
   }
