@@ -1,14 +1,25 @@
 const router = require("express").Router();
 const Workout = require("../models/workout");
 
-// GET last workout
+// GET all previous workouts
 router.get("/api/workouts", async (req, res) => {
   try {
-    Workout.find({})
-      .sort({ date: -1 })
+    Workout.find()
       .then((dbWorkout) => {
         res.json(dbWorkout);
       });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+// GET one workout within a range
+router.get("/api/workouts/range", async (req, res) => {
+  try {
+    Workout.find().then((dbWorkout) => {
+      res.json(dbWorkout);
+    });
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
