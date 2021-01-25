@@ -20,7 +20,6 @@ router.get("/api/workouts", async (req, res) => {
 // GET one workout within a range (last 7 days)
 router.get("/api/workouts/range", async (req, res) => {
   try {
-    // Workout.find({})
     // use aggregate function to dynamically add up and return total duration for each workout
     Workout.aggregate([
       {
