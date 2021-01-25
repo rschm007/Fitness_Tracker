@@ -5,6 +5,11 @@
   
 Check out the badges hosted by [shields.io](https://shields.io/).
 
+## Links
+
+Repository: <a href="https://github.com/rschm007/Fitness_Tracker">https://github.com/rschm007/Fitness_Tracker</a>
+
+Deployed App: <a href="https://murmuring-anchorage-59316.herokuapp.com">https://murmuring-anchorage-59316.herokuapp.com/</a>
 
 ## Description
 
